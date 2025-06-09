@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>คำนวณเกรดเฉลี่ย 5 เทอม</title>
+  <style>
+    body {
+      font-family: 'Prompt', sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    input {
+      margin: 5px;
+      padding: 8px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    #result {
+      margin-top: 15px;
+      font-size: 20px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <h1>แอปคำนวณเกรดเฉลี่ย 5 เทอม</h1>
+
+  <input type="number" id="term1" placeholder="เทอม 1" step="0.01" min="0" max="4"><br>
+  <input type="number" id="term2" placeholder="เทอม 2" step="0.01" min="0" max="4"><br>
+  <input type="number" id="term3" placeholder="เทอม 3" step="0.01" min="0" max="4"><br>
+  <input type="number" id="term4" placeholder="เทอม 4" step="0.01" min="0" max="4"><br>
+  <input type="number" id="term5" placeholder="เทอม 5" step="0.01" min="0" max="4"><br>
+
+  <button onclick="calculateGPA()">คำนวณ</button>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateGPA() {
+      const t1 = parseFloat(document.getElementById("term1").value);
+      const t2 = parseFloat(document.getElementById("term2").value);
+      const t3 = parseFloat(document.getElementById("term3").value);
+      const t4 = parseFloat(document.getElementById("term4").value);
+      const t5 = parseFloat(document.getElementById("term5").value);
+
+      const grades = [t1, t2, t3, t4, t5];
+
+      if (grades.some(isNaN)) {
+        document.getElementById("result").innerText = "กรุณากรอกเกรดให้ครบทุกเทอม";
+        return;
+      }
+
+      if (grades.some(g => g < 0 || g > 4)) {
+        document.getElementById("result").innerText = "กรุณากรอกเกรดระหว่าง 0.00 ถึง 4.00";
+        return;
+      }
+
+      const avg = grades.reduce((sum, val) => sum + val, 0) / grades.length;
+      document.getElementById("result").innerText = `เกรดเฉลี่ยรวม: ${avg.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
